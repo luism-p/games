@@ -51,6 +51,7 @@ body {
   transition: 0.2s;
   font-weight: bold;
   cursor: pointer;
+  width: fit-content;
 }
 
 .board button:hover {
@@ -67,7 +68,7 @@ body {
 .turn {
   display: flex;
   justify-content: center;
-  margin: 15px auto;
+  margin: 1.5rem auto;
   width: fit-content;
   position: relative;
   border-radius: 10px;
@@ -83,7 +84,9 @@ body {
 
 .square.is-selected {
   color: #fff;
-  background: #09f;
+
+  border: 2px solid #eee;
+  border-radius: 5px;
 }
 
 .winner {

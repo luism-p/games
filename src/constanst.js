@@ -1,7 +1,14 @@
+import { Board } from "./components/tres-en-raya/Board";
+
 export const TURNS = {
   X: "❌",
   O: "⚪",
 };
+
+export const GAMES = {
+  "TRES_EN_RAYA":"Tres en raya", 
+  "CONECTA_4":"Conecta 4"
+}
 
 
 

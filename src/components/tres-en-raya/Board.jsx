@@ -7,7 +7,7 @@ import { Game } from "./Game.jsx";
 import { checkWinnerFrom, checkEndGameFrom, getNextTurn, getFirstPlayer } from "../../logic/board.js";
 import { Turn } from "./Turn.jsx";
 
-export const Board = () => {
+export const Board = ({changeGame}) => {
   const [board, setBoard] = useState(Array(9).fill(null));
 
   const [turn, setTurn] = useState(getFirstPlayer());
@@ -17,7 +17,7 @@ export const Board = () => {
 
   const resetGame = () => {
     setBoard(Array(9).fill(null));
-   // setTurn(getFirstPlayer());
+    setTurn(getFirstPlayer());
     setWinner(null);
   };
 
@@ -39,12 +39,19 @@ export const Board = () => {
     }
   };
 
+  const handleClickChageGame = () => {
+
+    resetGame()
+    changeGame()
+  }
+
   return (
     <main className="board">
       <h1>Tres en Raya</h1>
-      <button onClick={resetGame}>Empezar de nuevo</button>
       <Game board={board} updateBoard={updateBoard} />
       <Turn turn={turn} />
+      <button onClick={resetGame}>Empezar de nuevo</button>
+      <button onClick={handleClickChageGame}>Cambiar de juego</button>
       <WinnerModal winner={winner} resetGame={resetGame} />
     </main>
   );
