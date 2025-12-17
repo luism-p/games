@@ -11,7 +11,7 @@ import { Turn } from "../common/Turn.jsx";
 export const Board = ({changeGame}) => {
   const [board, setBoard] = useState(Array(6).fill(Array(7).fill(null)));
 
-  const [turn, setTurn] = useState(getFirstPlayer());
+  const [turn, setTurn] = useState(getFirstPlayer(TURNS.CONECTA_4));
 
   // null es que no hay ganador, false es que hay empate, true un ganador
   const [winner, setWinner] = useState(null);
