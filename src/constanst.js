@@ -1,16 +1,19 @@
-import { Board } from "./components/tres-en-raya/Board";
 
 export const TURNS = {
-  X: "❌",
-  O: "⚪",
+  TRES_EN_RAYA: {
+    X: "❌",
+    O: "⚪",
+  },
+  CONECTA_4: {
+    X: "🔴",
+    O: "🟡",
+  },
 };
 
 export const GAMES = {
-  "TRES_EN_RAYA":"Tres en raya", 
-  "CONECTA_4":"Conecta 4"
-}
-
-
+  TRES_EN_RAYA: "Tres en raya",
+  CONECTA_4: "Conecta 4",
+};
 
 export const WINNER_COMBOS = [
   // Filas

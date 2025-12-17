@@ -1,4 +1,4 @@
-import { WINNER_COMBOS, TURNS } from "../constanst.js";
+import { WINNER_COMBOS} from "../constanst.js";
 
 export function checkWinnerFrom(boardTocheck) {
   for (const combo of WINNER_COMBOS) {
@@ -15,11 +15,11 @@ export const checkEndGameFrom = (newBoard) => {
   return newBoard.every((square) => square !== null);
 };
 
-export const getFirstPlayer = () => {
+export const getFirstPlayer = (turns) => {
   const random = Math.round(Math.random());
-  return Object.values(TURNS)[random];
+  return Object.values(turns)[random];
 };
 
-export const getNextTurn = (turn) => {
-  return turn === TURNS.X ? TURNS.O : TURNS.X;
+export const getNextTurn = (turn, turns) => {
+  return turn === turns.X ? turns.O : turns.X;
 };

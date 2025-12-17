@@ -3,22 +3,22 @@ import { useState } from "react";
 import confetti from "canvas-confetti";
 
 import { WinnerModal } from "../common/WinnerModal.jsx";
-import { Turn } from "../common/Turn.jsx";
-
 import { Game } from "./Game.jsx";
 import { checkWinnerFrom, checkEndGameFrom, getNextTurn, getFirstPlayer } from "../../logic/board.js";
 import { TURNS } from "../../constanst.js";
+import { Turn } from "../common/Turn.jsx";
 
 export const Board = ({changeGame}) => {
-  const [board, setBoard] = useState(Array(9).fill(null));
-  const [turn, setTurn] = useState(getFirstPlayer(TURNS.TRES_EN_RAYA));
+  const [board, setBoard] = useState(Array(6).fill(Array(7).fill(null)));
+
+  const [turn, setTurn] = useState(getFirstPlayer());
 
   // null es que no hay ganador, false es que hay empate, true un ganador
   const [winner, setWinner] = useState(null);
 
   const resetGame = () => {
-    setBoard(Array(9).fill(null));
-    setTurn(getFirstPlayer(TURNS.TRES_EN_RAYA));
+    setBoard(Array(42).fill(null));
+    setTurn(getFirstPlayer(TURNS.CONECTA_4));
     setWinner(null);
   };
 
@@ -27,7 +27,8 @@ export const Board = ({changeGame}) => {
     const newBoard = [...board];
     newBoard[index] = turn;
     setBoard(newBoard);
-    const next = getNextTurn(turn, TURNS.TRES_EN_RAYA);
+
+    const next = getNextTurn(turn, TURNS.CONECTA_4);
     setTurn(next);
 
     const newWinner = checkWinnerFrom(newBoard);
@@ -49,7 +50,7 @@ export const Board = ({changeGame}) => {
     <main className="board">
       <h1>Tres en Raya</h1>
       <Game board={board} updateBoard={updateBoard} />
-      <Turn turn={turn} turns={TURNS.TRES_EN_RAYA} />
+      <Turn turn={turn} turns={TURNS.CONECTA_4} />
       <button onClick={resetGame}>Empezar de nuevo</button>
       <button onClick={handleClickChageGame}>Cambiar de juego</button>
       <WinnerModal winner={winner} resetGame={resetGame} />

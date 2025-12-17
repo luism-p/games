@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import { GAMES } from "./constanst.js";
-import { TRES_EN_RAYA } from "./components/tres-en-raya/Index.jsx";
-import { CONECTA_4 } from "./components/conecta4/Index.jsx";
+import { TRES_EN_RAYA } from "./components/tres-en-raya/index.jsx";
+import { CONECTA_4 } from "./components/conecta4/index.jsx"
 
 function App() {
   const [game, setGame] = useState(null);
