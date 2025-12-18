@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import { GAMES } from "./constanst.js";
-import { Conecta4 } from "./components/conecta4/Conecta4.jsx"
-import { TresEnRaya } from "./components/tres-en-raya/TresEnRaya.jsx"
+import { Conecta4 } from "./components/games/conecta4/Conecta4.jsx"
+import { TresEnRaya } from "./components/games/tres-en-raya/TresEnRaya.jsx"
 
 
 function App() {

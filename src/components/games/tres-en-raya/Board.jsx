@@ -6,8 +6,8 @@ import { WinnerModal } from "./WinnerModal.jsx";
 import { Turn } from "./Turn.jsx";
 
 import { Game } from "./Game.jsx";
-import { getNextTurn, getFirstPlayer, checkWinnerFromTresEnRaya, checkEndGameFromTresEnRaya } from "../../logic/board.js";
-import { TURNS } from "../../constanst.js";
+import { getNextTurn, getFirstPlayer, checkWinnerFromTresEnRaya, checkEndGameFromTresEnRaya } from "../../../logic/board.js";
+import { TURNS } from "../../../constanst.js";
 
 export const Board = ({changeGame}) => {
   const [board, setBoard] = useState(Array(9).fill(null));

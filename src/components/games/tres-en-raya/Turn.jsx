@@ -1,4 +1,4 @@
-import { Square } from "../conecta4/Square.jsx";
+import { Square } from "./Square.jsx";
 
 export const Turn = ({ turn, turns }) => {
   return (

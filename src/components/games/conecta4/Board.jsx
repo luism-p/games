@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 import confetti from "canvas-confetti";
 
 import { WinnerModal } from "./WinnerModal.jsx";
 import { Game } from "./Game.jsx";
-import { checkEndGameFromConecta4, getNextTurn, getFirstPlayer, checkWinnerFromConecta4 } from "../../logic/board.js";
-import { TURNS } from "../../constanst.js";
+import { checkEndGameFromConecta4, getNextTurn, getFirstPlayer, checkWinnerFromConecta4 } from "../../../logic/board.js";
+import { TURNS } from "../../../constanst.js";
 import { Turn } from "./Turn.jsx";
 
 export const Board = ({changeGame}) => {
@@ -23,7 +23,7 @@ export const Board = ({changeGame}) => {
     setWinner(null);
   };
 
-  const updateBoard = (column, index) => {
+  const updateBoard = useCallback((column, index) => {
     if (board[column][index] || winner) return;
     const newBoard = board.map((col) => col.slice());
     newBoard[column][index] = turn;
@@ -39,7 +39,7 @@ export const Board = ({changeGame}) => {
     } else if (checkEndGameFromConecta4(newBoard)) {
       setWinner(false);
     }
-  };
+  }, [board, turn, winner]);
 
   const handleClickChageGame = () => {
 
