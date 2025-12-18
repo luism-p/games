@@ -1,17 +1,19 @@
+import { Square } from "./Square.jsx";
 
+export function Column({ updateBoard, column, index }) {
+  const handleClick = (colIndex) => {
+    const targetIndex = column.lastIndexOf(null);
+    if (targetIndex === -1) return;
+    updateBoard(colIndex, targetIndex);
+  };
 
-export function Column ({updateBoard, board}) {
-
-    return(
-    <section className="column">
-            {board.map((square, index) => {
-              return (
-                <Square key={index} index={index} updateBoard={updateBoard}>
-                  {square}
-                </Square>
-              );
-            })}
-          </section>
-          );
+  return (
+    <section className="column" onClick={() => handleClick(index)}>
+      {column.map((square, idx) => (
+        <Square key={idx} index={idx}>
+          {square}
+        </Square>
+      ))}
+    </section>
+  );
 }
-

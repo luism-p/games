@@ -1,4 +1,4 @@
-import { Square } from "../common/Square.jsx";
+import { Square } from "./Square.jsx";
 
 export function Game ({ board, updateBoard }) {
     return (

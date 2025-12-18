@@ -2,11 +2,11 @@ import { useState } from "react";
 
 import confetti from "canvas-confetti";
 
-import { WinnerModal } from "../common/WinnerModal.jsx";
-import { Turn } from "../common/Turn.jsx";
+import { WinnerModal } from "./WinnerModal.jsx";
+import { Turn } from "./Turn.jsx";
 
 import { Game } from "./Game.jsx";
-import { checkWinnerFrom, checkEndGameFrom, getNextTurn, getFirstPlayer } from "../../logic/board.js";
+import { getNextTurn, getFirstPlayer, checkWinnerFromTresEnRaya, checkEndGameFromTresEnRaya } from "../../logic/board.js";
 import { TURNS } from "../../constanst.js";
 
 export const Board = ({changeGame}) => {
@@ -30,11 +30,11 @@ export const Board = ({changeGame}) => {
     const next = getNextTurn(turn, TURNS.TRES_EN_RAYA);
     setTurn(next);
 
-    const newWinner = checkWinnerFrom(newBoard);
+    const newWinner = checkWinnerFromTresEnRaya(newBoard);
     if (newWinner) {
       confetti();
       setWinner(newWinner);
-    } else if (checkEndGameFrom(newBoard)) {
+    } else if (checkEndGameFromTresEnRaya(newBoard)) {
       setWinner(false);
     }
   };

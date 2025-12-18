@@ -2,14 +2,15 @@ import { useState } from "react";
 
 import confetti from "canvas-confetti";
 
-import { WinnerModal } from "../common/WinnerModal.jsx";
+import { WinnerModal } from "./WinnerModal.jsx";
 import { Game } from "./Game.jsx";
-import { checkWinnerFrom, checkEndGameFrom, getNextTurn, getFirstPlayer } from "../../logic/board.js";
+import { checkEndGameFromConecta4, getNextTurn, getFirstPlayer, checkWinnerFromConecta4 } from "../../logic/board.js";
 import { TURNS } from "../../constanst.js";
-import { Turn } from "../common/Turn.jsx";
+import { Turn } from "./Turn.jsx";
 
 export const Board = ({changeGame}) => {
-  const [board, setBoard] = useState(Array(6).fill(Array(7).fill(null)));
+  const emptyBoard = () => Array.from({ length: 7 }, () => Array(6).fill(null));
+  const [board, setBoard] = useState(emptyBoard());
 
   const [turn, setTurn] = useState(getFirstPlayer(TURNS.CONECTA_4));
 
@@ -17,25 +18,25 @@ export const Board = ({changeGame}) => {
   const [winner, setWinner] = useState(null);
 
   const resetGame = () => {
-    setBoard(Array(42).fill(null));
+    setBoard(emptyBoard());
     setTurn(getFirstPlayer(TURNS.CONECTA_4));
     setWinner(null);
   };
 
-  const updateBoard = (index) => {
-    if (board[index] || winner) return;
-    const newBoard = [...board];
-    newBoard[index] = turn;
+  const updateBoard = (column, index) => {
+    if (board[column][index] || winner) return;
+    const newBoard = board.map((col) => col.slice());
+    newBoard[column][index] = turn;
     setBoard(newBoard);
 
     const next = getNextTurn(turn, TURNS.CONECTA_4);
     setTurn(next);
 
-    const newWinner = checkWinnerFrom(newBoard);
+    const newWinner = checkWinnerFromConecta4(newBoard, column, index);
     if (newWinner) {
       confetti();
       setWinner(newWinner);
-    } else if (checkEndGameFrom(newBoard)) {
+    } else if (checkEndGameFromConecta4(newBoard)) {
       setWinner(false);
     }
   };
@@ -48,7 +49,7 @@ export const Board = ({changeGame}) => {
 
   return (
     <main className="board">
-      <h1>Tres en Raya</h1>
+      <h1>Conecta 4</h1>
       <Game board={board} updateBoard={updateBoard} />
       <Turn turn={turn} turns={TURNS.CONECTA_4} />
       <button onClick={resetGame}>Empezar de nuevo</button>

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./App.css";
 import { GAMES } from "./constanst.js";
-import { TRES_EN_RAYA } from "./components/tres-en-raya/index.jsx";
-import { CONECTA_4 } from "./components/conecta4/index.jsx"
+import { Conecta4 } from "./components/conecta4/Conecta4.jsx"
+import { TresEnRaya } from "./components/tres-en-raya/TresEnRaya.jsx"
+
 
 function App() {
   const [game, setGame] = useState(null);
@@ -18,9 +19,9 @@ function App() {
   const renderGame = (game) => {
     switch (game) {
       case "TRES_EN_RAYA":
-        return (<TRES_EN_RAYA changeGame={changeGame}/>);
+        return (<TresEnRaya changeGame={changeGame}/>);
       case "CONECTA_4":
-        return (<CONECTA_4 changeGame={changeGame}/>);
+        return (<Conecta4 changeGame={changeGame}/>);
     }
   };
 

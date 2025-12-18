@@ -59,11 +59,28 @@ body {
   color: #222;
 }
 
-.board .game {
+.tres-en-raya .board .game {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  
 }
+
+.conecta4 .board .game {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  padding: 10px;
+  background-color: #6b3c97;
+  border-radius: 10px;
+}
+
+.conecta4 .column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 
 .turn {
   display: flex;
@@ -126,8 +143,17 @@ body {
   height: 100px;
   border: 2px solid #eee;
   border-radius: 5px;
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   font-size: 48px;
+  line-height: 1;
+  background-color: #242424;
+  overflow: hidden;
+}
+
+.conecta4 .game .square {
+  border-radius: 100%;
+  font-size: 60px;
 }
