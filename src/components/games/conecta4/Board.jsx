@@ -1,10 +1,8 @@
-import { useState, useCallback } from "react";
-
-import confetti from "canvas-confetti";
+import { useState } from "react";
 
 import { WinnerModal } from "./WinnerModal.jsx";
 import { Game } from "./Game.jsx";
-import { checkEndGameFromConecta4, getNextTurn, getFirstPlayer, checkWinnerFromConecta4 } from "../../../logic/board.js";
+import { checkEndGameFromConecta4, getNextTurn, getFirstPlayer, checkWinnerFromConecta4, triggerConfetti } from "../../../logic/board.js";
 import { TURNS } from "../../../constanst.js";
 import { Turn } from "./Turn.jsx";
 
@@ -14,7 +12,6 @@ export const Board = ({changeGame}) => {
 
   const [turn, setTurn] = useState(getFirstPlayer(TURNS.CONECTA_4));
 
-  // null es que no hay ganador, false es que hay empate, true un ganador
   const [winner, setWinner] = useState(null);
 
   const resetGame = () => {
@@ -23,29 +20,32 @@ export const Board = ({changeGame}) => {
     setWinner(null);
   };
 
-  const updateBoard = useCallback((column, index) => {
-    if (board[column][index] || winner) return;
-    const newBoard = board.map((col) => col.slice());
-    newBoard[column][index] = turn;
-    setBoard(newBoard);
+  const updateBoard = (column, index) => {
+    setBoard(prevBoard => {
+      if (prevBoard[column][index] || winner) return prevBoard;
+      
+      const newBoard = prevBoard.map((col) => col.slice());
+      newBoard[column][index] = turn;
+      
+      const nextTurn = getNextTurn(turn, TURNS.CONECTA_4);
+      setTurn(nextTurn);
 
-    const next = getNextTurn(turn, TURNS.CONECTA_4);
-    setTurn(next);
+      const newWinner = checkWinnerFromConecta4(newBoard, column, index);
+      if (newWinner) {
+        triggerConfetti();
+        setWinner(newWinner);
+      } else if (checkEndGameFromConecta4(newBoard)) {
+        setWinner(false);
+      }
+      
+      return newBoard;
+    });
+  };
 
-    const newWinner = checkWinnerFromConecta4(newBoard, column, index);
-    if (newWinner) {
-      confetti();
-      setWinner(newWinner);
-    } else if (checkEndGameFromConecta4(newBoard)) {
-      setWinner(false);
-    }
-  }, [board, turn, winner]);
-
-  const handleClickChageGame = () => {
-
-    resetGame()
-    changeGame()
-  }
+  const handleClickChangeGame = () => {
+    resetGame();
+    changeGame();
+  };
 
   return (
     <main className="board">
@@ -53,7 +53,7 @@ export const Board = ({changeGame}) => {
       <Game board={board} updateBoard={updateBoard} />
       <Turn turn={turn} turns={TURNS.CONECTA_4} />
       <button onClick={resetGame}>Empezar de nuevo</button>
-      <button onClick={handleClickChageGame}>Cambiar de juego</button>
+      <button onClick={handleClickChangeGame}>Cambiar de juego</button>
       <WinnerModal winner={winner} resetGame={resetGame} />
     </main>
   );

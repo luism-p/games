@@ -1,18 +1,20 @@
-import { Square } from "./Square.jsx";
+import { GameSquare } from "./GameSquare.jsx";
+import { findNextAvailableRow } from "../../../logic/board.js";
 
 export function Column({ updateBoard, column, index }) {
   const handleClick = (colIndex) => {
-    const targetIndex = column.lastIndexOf(null);
-    if (targetIndex === -1) return;
+    const targetIndex = findNextAvailableRow(column);
+    if (targetIndex === null) return;
     updateBoard(colIndex, targetIndex);
   };
 
   return (
     <section className="column" onClick={() => handleClick(index)}>
       {column.map((square, idx) => (
-        <Square key={idx} index={idx}>
-          {square}
-        </Square>
+        <GameSquare 
+          key={idx}
+          player={square}
+        />
       ))}
     </section>
   );

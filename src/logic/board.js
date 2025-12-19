@@ -1,4 +1,5 @@
 import { WINNER_COMBOS} from "../constanst.js";
+import confetti from "canvas-confetti";
 
 export function checkWinnerFromTresEnRaya(boardTocheck) {
   for (const combo of WINNER_COMBOS) {
@@ -61,4 +62,17 @@ export const getFirstPlayer = (turns) => {
 
 export const getNextTurn = (turn, turns) => {
   return turn === turns.X ? turns.O : turns.X;
+};
+
+export const findNextAvailableRow = (column) => {
+  const index = column.lastIndexOf(null);
+  return index >= 0 ? index : null;
+};
+
+export const triggerConfetti = () => {
+  try {
+    confetti?.();
+  } catch (e) {
+    console.warn('Confetti no disponible:', e);
+  }
 };

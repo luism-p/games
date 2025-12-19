@@ -1,10 +1,10 @@
-import { Square } from "./Square.jsx";
+import { TurnIndicator } from "./TurnIndicator.jsx";
 
 export const Turn = ({ turn, turns }) => {
   return (
     <section className="turn">
-      <Square isSelected={turn === turns.X}>{turns.X}</Square>
-      <Square isSelected={turn === turns.O}>{turns.O}</Square>
+      <TurnIndicator player={turns.X} isActive={turn === turns.X} />
+      <TurnIndicator player={turns.O} isActive={turn === turns.O} />
     </section>
   );
 };
