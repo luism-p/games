@@ -1,7 +1,7 @@
 :root {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1rem;
+  line-height: 1.5rem;
   font-weight: 400;
 
   color-scheme: light dark;
@@ -19,8 +19,8 @@ body {
   margin: 0;
   display: flex;
   justify-content: center;
-  min-width: 320px;
-  min-height: 100vh;
+  min-width: 20rem;
+  min-height: 100dvh;
 }
 
 * {
@@ -31,23 +31,23 @@ body {
 
 .board {
   width: fit-content;
-  margin: 40px auto;
+  margin: 2.5rem auto;
   text-align: center;
 }
 
 .board h1 {
   color: #eee;
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
 }
 
 .board button {
-  padding: 8px 12px;
-  margin: 25px;
+  padding: 0.5rem 0.75rem;
+  margin: 1.5rem;
   background: transparent;
-  border: 2px solid #eee;
+  border: 0.125rem solid #eee;
   color: #eee;
-  width: 100px;
-  border-radius: 5px;
+  width: 6.25rem;
+  border-radius: 0.3rem;
   transition: 0.2s;
   font-weight: bold;
   cursor: pointer;
@@ -62,23 +62,23 @@ body {
 .tres-en-raya .board .game {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 0.6rem;
   
 }
 
 .conecta4 .board .game {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-  padding: 10px;
+  gap: 0.625rem;
+  padding: 0.625rem;
   background-color: #6b3c97;
-  border-radius: 10px;
+  border-radius: 0.625rem;
 }
 
 .conecta4 .column {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 
@@ -88,13 +88,13 @@ body {
   margin: 1.5rem auto;
   width: fit-content;
   position: relative;
-  border-radius: 10px;
+  border-radius: 0.625rem;
 }
 
 .turn .square,
 .winner .square {
-  width: 70px;
-  height: 70px;
+  width: 4.375rem;
+  height: 4.375rem;
   pointer-events: none;
   border-color: transparent;
 }
@@ -102,8 +102,8 @@ body {
 .square.is-selected {
   color: #fff;
 
-  border: 2px solid #eee;
-  border-radius: 5px;
+  border: 0.125rem solid #eee;
+  border-radius: 0.3rem;
 }
 
 .winner {
@@ -119,35 +119,35 @@ body {
 
 .winner .text {
   background: #111;
-  height: 300px;
-  width: 320px;
-  border: 2px solid #eee;
-  border-radius: 10px;
+  height: 18.75rem;
+  width: 20rem;
+  border: 0.125rem solid #eee;
+  border-radius: 0.625rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 1.25rem;
 }
 
 .winner .win {
   margin: 0 auto;
   width: fit-content;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   display: flex;
-  gap: 15px;
+  gap: 10.3rem;
 }
 
 .square {
-  width: 100px;
-  height: 100px;
-  border: 2px solid #eee;
-  border-radius: 5px;
+  width: 6.25rem;
+  height: 6.25rem;
+  border: 0.125rem solid #eee;
+  border-radius: 0.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-size: 48px;
+  font-size: 3rem;
   line-height: 1;
   background-color: #242424;
   overflow: hidden;
@@ -155,5 +155,84 @@ body {
 
 .conecta4 .game .square {
   border-radius: 100%;
-  font-size: 60px;
+  font-size: 3.75rem;
+}
+
+/* Media queries para móviles */
+@media (max-width: 768px) {
+  .conecta4 .board .game {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.4rem;
+    padding: 0.4rem;
+  }
+
+  .square {
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.75rem;
+  }
+
+  .conecta4 .game .square {
+    font-size: 2rem;
+  }
+
+  .turn .square,
+  .winner .square {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .board button {
+    padding: 0.4rem 0.6rem;
+    margin: 1rem;
+  }
+
+  .board h1 {
+    margin-bottom: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .conecta4 .board .game {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.3rem;
+    padding: 0.3rem;
+  }
+
+  .square {
+    width: 2.8rem;
+    height: 2.8rem;
+    font-size: 1.25rem;
+  }
+
+  .conecta4 .game .square {
+    font-size: 1.5rem;
+  }
+
+  .turn .square,
+  .winner .square {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .board button {
+    padding: 0.3rem 0.5rem;
+    margin: 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .winner .text {
+    height: auto;
+    width: 90%;
+    max-width: 15rem;
+    padding: 1rem;
+  }
+
+  .winner .win {
+    gap: 0.5rem;
+  }
+
+  #root {
+    padding: 1rem;
+  }
 }
